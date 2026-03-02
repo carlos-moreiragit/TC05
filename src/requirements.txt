@@ -1,0 +1,6 @@
+flask
+keras
+tensorflow
+scikit-learn==1.6
+pandas
+feast
