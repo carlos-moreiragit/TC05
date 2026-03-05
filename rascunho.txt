@@ -1,0 +1,5 @@
+do raiz:
+
+python -m pytest
+
+
