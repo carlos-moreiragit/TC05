@@ -5,13 +5,10 @@ WORKDIR /app
 # copiar arquivos
 COPY . /app
 
+WORKDIR /app/src
+
 # instalar dependências
-RUN pip install --no-cache-dir \
-    flask \
-    feast \
-    pandas \
-    scikit-learn \
-    joblib
+RUN pip install -r requirements.txt
 
 EXPOSE 5000
 

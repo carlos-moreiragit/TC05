@@ -24,4 +24,6 @@ training_df = store.get_historical_features(
 
 print(training_df.head())
 
+print(training_df.shape)
 
+print(training_df.info())

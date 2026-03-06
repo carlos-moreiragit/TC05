@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split, StratifiedKFold
 from sklearn.metrics import classification_report
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import RobustScaler, OneHotEncoder
+from sklearn.preprocessing import OrdinalEncoder, RobustScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 import numpy as np
 import joblib
@@ -27,22 +27,23 @@ training_df = store.get_historical_features(
         "aluno_features:IPP",
         "aluno_features:IDA",
         "aluno_features:IPV",
+        "aluno_features:DEFASAGEM",
     ],
 ).to_df()
 
-training_df["DEFASAGEM"] = df["DEFASAGEM"].values
+#training_df["DEFASAGEM"] = df["DEFASAGEM"].values
 
-X = training_df.drop(columns=["PK", "event_timestamp", "DEFASAGEM"])
+X = training_df.drop(columns=["PK", "event_timestamp", "DEFASAGEM"], axis = 1)
 y = training_df["DEFASAGEM"]
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42, stratify=y
-)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, stratify = y, random_state = 42)
+
+numeric_features = [col for col in X_train.columns if X_train[col].dtypes in ["int64", "float64"]]
+categorical_features = [col for col in X_train.columns if X_train[col].dtypes in ["object"]]
 
 cv = StratifiedKFold(n_splits = 5, shuffle = True, random_state = 42)
 
 def cross_val_report(pipe, X_train, y_train):
-
     precision_scores = []
     recall_scores = []
     f1_scores = []
@@ -63,9 +64,6 @@ def cross_val_report(pipe, X_train, y_train):
     print("Média Ponderada do recall: ",np.mean(recall_scores))
     print("Média Ponderada f1-score: ",np.mean(f1_scores))
 
-numeric_features = [col for col in X_train.columns if X_train[col].dtypes in ["int64", "float64"]]
-categorical_features = [col for col in X_train.columns if X_train[col].dtypes in ["object"]]
-
 # Numeric pipeline
 numeric_transformer = Pipeline(steps=[
     ("imputer", SimpleImputer(missing_values = 0, strategy = "median")),
@@ -84,18 +82,23 @@ preprocessor_lr = ColumnTransformer([
     ("cat", catorical_transformer,categorical_features)
 ])
 
+#preprocessor for tree-based model
+preprocessor_treebased = ColumnTransformer([
+    ("num", SimpleImputer(missing_values = 0, strategy = "median"), numeric_features),
+    ("cat", OrdinalEncoder(handle_unknown = "use_encoded_value", unknown_value= -1), categorical_features)
+])
+
 pipeline = Pipeline(steps=[
     ("preprocessor", preprocessor_lr),
     ("classifier", SVC(kernel = 'rbf', probability = True, class_weight = "balanced"))
 ])
 
-pipeline.fit(X_train, y_train)
-
-y_pred = pipeline.predict(X_test)
+#pipeline.fit(X_train, y_train)
 
 cross_val_report(pipeline,X_train,y_train)
 
+y_pred = pipeline.predict(X_test)
+print(classification_report(y_test, y_pred))
 
-
-joblib.dump(pipeline, "modelo_svm_defasagem.pkl")
-print("Modelo salvo em modelo_svm_defasagem.pkl")
+joblib.dump(pipeline, "../model/passos.pkl")
+print("Modelo salvo em model/passos.pkl")
