@@ -1,0 +1,36 @@
+# Python specific files and directories
+**/__pycache__
+*.pyc
+*.whl
+.venv/
+venv/
+pip-log.txt
+
+# Version control
+.git
+.gitignore
+
+# Environment files and secrets
+.env
+.secrets.dev.yaml
+
+# IDE and OS specific files
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*~
+
+# Build artifacts and logs
+**/bin
+**/obj
+**/target
+npm-debug.log
+
+
+# custome
+rascunho.txt
+data/
+passos_repo/
+tests/
+logs/
