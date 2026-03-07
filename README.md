@@ -8,10 +8,10 @@ Pipeline completo de Machine Learning para predição de **defasagem educacional
 - **Docker** → Containerização
 - **GitHub Actions** → CI/CD
 
-O sistema treina um modelo para prever a **chance de defasagem** a partir de indicadores educacionais,conforme imagens abaixo:
-![Alt text](images/inde.png)
-![Alt text](images/indicadores_avaliacao.png)
-![Alt text](images/indicadores_conselho.png)
+O sistema treina um modelo para prever a **chance de defasagem** a partir de indicadores educacionais, conforme imagens abaixo:
+![INDE](images/inde.png)
+![Indicadores de Avaliação](images/indicadores_avaliacao.png)
+![Indicadores Conselho](images/indicadores_conselho.png)
 
 As features utilizadas são:
 
@@ -32,35 +32,6 @@ Maiores detalhes sobre as features, seleção, treinamento e validação do mode
 ![Alt text](images/diagrama-arquitetura.png)
 
 ---
-
-# Estrutura do Projeto
-
-```text
-.
-├── data/
-│   └── PEDE2024-silver.csv
-│
-├── features.py
-├── train_pipeline.py
-├── api.py
-│
-├── feature_store.yaml
-├── modelo_svm_defasagem.pkl
-│
-├── Dockerfile
-├── docker-compose.yml
-│
-├── logs/
-│   └── predictions.log
-│
-└── .github/
-    └── workflows/
-        └── ci.yml
-```
-
-# Estrutura do Projeto
-
-PK,event_timestamp,INDE,IDADE,IAA,IEG,IPS,IPP,IDA,IPV,DEFASAGEM
 
 # Instalação
 git clone https://github.com/carlos-moreiragit/TC05.git
