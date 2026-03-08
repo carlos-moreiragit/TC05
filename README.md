@@ -9,9 +9,14 @@ Pipeline completo de Machine Learning para predição de **defasagem educacional
 - **GitHub Actions** → CI/CD
 
 O sistema treina um modelo para prever a **chance de defasagem** a partir de indicadores educacionais, conforme imagens abaixo:
+
+---
+
 ![INDE](images/inde.png)
 ![Indicadores de Avaliação](images/indicadores_avaliacao.png)
 ![Indicadores Conselho](images/indicadores_conselho.png)
+
+---
 
 As features utilizadas são:
 
