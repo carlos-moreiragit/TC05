@@ -28,8 +28,7 @@ def predict():
 
     input_data = pd.DataFrame(data)
 
-    prediction = model.predict(input_data) # Reshape para single prediction
-
+    prediction = model.predict(input_data)
     prediction_list = prediction.tolist()
 
     end_time = time.perf_counter()
