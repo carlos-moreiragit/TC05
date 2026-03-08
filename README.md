@@ -37,27 +37,30 @@ Maiores detalhes sobre as features, seleção, treinamento e validação do mode
 ---
 
 # Instalação
-git clone https://github.com/carlos-moreiragit/TC05.git
-cd TC05
-python -m venv venv
-source venv/bin/activate
-cd src
-pip install -r requirements.txt
+
+- git clone https://github.com/carlos-moreiragit/TC05.git
+- cd TC05
+- python -m venv venv
+- venv/bin/activate
+- cd src
+- pip install -r requirements.txt
 
 ## Criar a Feature Store
-python features.py
+
+- python features.py
 
 ## Treinar o Modelo
-svm_train_pipeline.py
+
+- svm_train_pipeline.py
 
 ## Executar a API
-python api.py
 
+- python api.py
 
 # Rodar em Docker
-docker build -t tc05 .
-docker run -p 5000:5000 tc05
+- docker build -t tc05 .
+- docker run -p 5000:5000 tc05
 
 ## Dockercompose
-docker-compose up --build
+- docker-compose up --build
 
