@@ -10,14 +10,6 @@ Pipeline completo de Machine Learning para predição de **defasagem educacional
 
 O sistema treina um modelo para prever a **chance de defasagem** a partir de indicadores educacionais, conforme imagens abaixo:
 
----
-
-![INDE](images/inde.png)
-![Indicadores de Avaliação](images/indicadores_avaliacao.png)
-![Indicadores Conselho](images/indicadores_conselho.png)
-
----
-
 As features utilizadas são:
 
 - INDE - Índice de desenvolvimento educacional
@@ -30,6 +22,12 @@ As features utilizadas são:
 - IPV - Indicador de ponto de virada
 
 Maiores detalhes sobre as features, seleção, treinamento e validação do modelo no arquivo TC05_Final.ipynb
+
+---
+
+![INDE](images/inde.png)
+![Indicadores de Avaliação](images/indicadores_avaliacao.png)
+![Indicadores Conselho](images/indicadores_conselho.png)
 
 ---
 
